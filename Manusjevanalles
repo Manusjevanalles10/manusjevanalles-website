@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Manusjevanalles | Projectuitvoering</title>
+  <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #080b15;
+      color: white;
+    }
+    header {
+      padding: 24px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    a { color: inherit; }
+    .hero {
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 30px;
+      background: radial-gradient(
+        ellipse at center, #24304e, #080b15 70%
+      );
+    }
+    h1 { font-size: clamp(40px, 6vw, 78px); }
+    p { color: #bac2d2; line-height: 1.7; }
+    .button {
+      display: inline-block;
+      background: white;
+      color: #111827;
+      padding: 15px 25px;
+      border-radius: 30px;
+      text-decoration: none;
+      margin: 8px;
+    }
+    section { padding: 70px 8%; }
+    .services { max-width: 850px; margin: auto; }
+    footer { padding: 30px; text-align: center; }
+  </style>
+</head>
+<body>
+
+<header>
+  <strong>MANUSJEVANALLES.</strong>
+  <a href="#contact">Contact</a>
+</header>
+
+<main>
+  <div class="hero">
+    <h1>Sterke mensen.<br>Strakke uitvoering.</h1>
+    <p>Hotelontruimingen, demontage en complete inhuizingen.
+       Flexibele teams met eigen ploegleiding.</p>
+    <div>
+      <a class="button" href="#contact">Project aanmelden</a>
+      <a href="#diensten">Onze diensten</a>
+    </div>
+  </div>
+
+  <section id="diensten" class="services">
+    <h2>Wat wij doen</h2>
+    <p>Wij ondersteunen zakelijke opdrachtgevers bij
+       hotelontruimingen, demontagewerkzaamheden en
+       complete inhuizingen.</p>
+    <p>Met een flexibel inzetbare ploeg van circa
+       20 mensen en een eigen ploegleider kunnen
+       wij projecten zelfstandig uitvoeren.</p>
+  </section>
+
+  <section id="contact">
+    <h2>Samen aan de slag?</h2>
+    <p>Heeft u een project of zoekt u een vaste
+       uitvoerende partner? Neem contact met ons op.</p>
+    <p>Telefonische contactgegevens volgen.</p>
+  </section>
+</main>
+
+<footer>© 2026 Manusjevanalles</footer>
+
+</body>
+</html>
