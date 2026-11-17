@@ -4,88 +4,782 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Manusjevanalles | Projectuitvoering</title>
+  <meta name="theme-color" content="#050711">
+  <meta name="description" content="Manusjevanalles: uitvoerende partner voor hotelontruimingen, demontage, inhuizing en projectlogistiek.">
+  <title>Manusjevanalles | Sterke mensen. Strakke uitvoering.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
+    :root {
+      --bg: #050711;
+      --surface: #0b1120;
+      --white: #f4f7fd;
+      --muted: #aab7ce;
+      --blue: #b8d9ff;
+      --line: rgba(255,255,255,.14);
+    }
+
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #080b15;
-      color: white;
+      background: var(--bg);
+      color: var(--white);
+      font-family: 'Onest', Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
     }
-    header {
-      padding: 24px 6%;
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea, select { font: inherit; }
+    button { cursor: pointer; }
+    :focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
+
+    .wrap { width: min(1160px, calc(100% - 44px)); margin: auto; }
+
+    /* NAVIGATIE */
+    .header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 10;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+    .nav {
+      height: 82px;
       display: flex;
+      align-items: center;
       justify-content: space-between;
-      align-items: center;
+      gap: 20px;
     }
-    a { color: inherit; }
+    .logo {
+      font-size: 23px;
+      font-weight: 700;
+      letter-spacing: -.08em;
+    }
+    .logo span { font-weight: 400; }
+    .logo i { color: var(--blue); font-style: normal; }
+    .links { display: flex; align-items: center; gap: 28px; }
+    .links a { font-size: 13px; color: #e0e7f4; }
+    .links a:hover { color: white; }
+    .nav-cta {
+      border: 1px solid rgba(255,255,255,.4);
+      padding: 12px 20px;
+      border-radius: 99px;
+    }
+
+    /* HERO MET BEWEGENDE ACHTERGROND */
     .hero {
-      min-height: 80vh;
+      min-height: 850px;
+      height: 100svh;
+      position: relative;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
+      overflow: hidden;
       text-align: center;
-      padding: 30px;
-      background: radial-gradient(
-        ellipse at center, #24304e, #080b15 70%
+      isolation: isolate;
+      background: #050711;
+    }
+    #ambient {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      pointer-events: none;
+      display: block;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background: linear-gradient(
+        to bottom,
+        rgba(5,7,17,.25),
+        rgba(5,7,17,.06) 45%,
+        rgba(5,7,17,.7)
       );
     }
-    h1 { font-size: clamp(40px, 6vw, 78px); }
-    p { color: #bac2d2; line-height: 1.7; }
-    .button {
-      display: inline-block;
-      background: white;
-      color: #111827;
-      padding: 15px 25px;
-      border-radius: 30px;
-      text-decoration: none;
-      margin: 8px;
+    .hero-content {
+      position: relative;
+      padding: 145px 0 110px;
+      width: 100%;
     }
-    section { padding: 70px 8%; }
-    .services { max-width: 850px; margin: auto; }
-    footer { padding: 30px; text-align: center; }
+    .eyebrow {
+      display: inline-flex;
+      gap: 12px;
+      align-items: center;
+      border: 1px solid rgba(210,225,255,.28);
+      background: rgba(255,255,255,.05);
+      padding: 12px 18px;
+      border-radius: 99px;
+      color: #dce8fc;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .13em;
+    }
+    .dot {
+      height: 7px;
+      width: 7px;
+      border-radius: 50%;
+      background: #b8dbff;
+      box-shadow: 0 0 15px #9bd1ff;
+    }
+    h1 {
+      margin: 33px 0 25px;
+      font-size: clamp(3.4rem, 7.8vw, 7.7rem);
+      letter-spacing: -.085em;
+      line-height: 1.05;
+      font-weight: 500;
+    }
+    h1 span { color: #c2dcfc; }
+    .hero-lead {
+      max-width: 670px;
+      margin: 0 auto;
+      color: #c3cde0;
+      line-height: 1.85;
+      font-size: clamp(16px, 1.5vw, 19px);
+    }
+    .actions {
+      margin-top: 39px;
+      display: flex;
+      justify-content: center;
+      gap: 13px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      border: 1px solid rgba(255,255,255,.35);
+      padding: 17px 25px;
+      border-radius: 99px;
+      min-height: 55px;
+      font-size: 13px;
+      font-weight: 600;
+      display: inline-flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 38px;
+      transition: transform .25s, background .25s;
+    }
+    .btn:hover { transform: translateY(-3px); }
+    .btn-light { background: #f3f7ff; color: #07101e; }
+    .btn-light:hover { background: #cfe5ff; }
+    .btn-dark { background: rgba(255,255,255,.07); color: white; }
+    .btn-dark:hover { background: rgba(255,255,255,.16); }
+    .industries {
+      margin-top: 80px;
+      color: #9eafc9;
+      font-size: 10px;
+      letter-spacing: .17em;
+    }
+    .scroll {
+      position: absolute;
+      bottom: 35px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #c4d4e9;
+      font-size: 10px;
+      letter-spacing: .16em;
+      white-space: nowrap;
+    }
+
+    /* ALGEMENE SECTIES */
+    section.content-section { padding: 125px 0; }
+    .kicker {
+      color: #a4cdfa;
+      font-size: 11px;
+      letter-spacing: .2em;
+      font-weight: 600;
+      margin-bottom: 22px;
+    }
+    h2 {
+      font-weight: 500;
+      font-size: clamp(2.6rem, 5vw, 5.1rem);
+      line-height: 1.09;
+      letter-spacing: -.075em;
+      margin: 0;
+    }
+    h2 span { color: #aebdd3; }
+    .section-copy {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.95;
+      max-width: 495px;
+    }
+
+    /* DIENSTEN */
+    .services { background: #090e1a; }
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 50px;
+      margin-bottom: 48px;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+    .card {
+      min-height: 335px;
+      border: 1px solid var(--line);
+      border-radius: 19px;
+      background: linear-gradient(145deg, #1b2a414f, #0c1422);
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      transition: transform .25s, border-color .25s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: #9fcaff77;
+    }
+    .card-number { color: #acd1fc; font-size: 12px; }
+    .card h3 {
+      font-size: 24px;
+      font-weight: 500;
+      letter-spacing: -.05em;
+      line-height: 1.25;
+      margin: 55px 0 14px;
+    }
+    .card p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+    .card-tag {
+      margin-top: auto;
+      border-top: 1px solid var(--line);
+      padding-top: 21px;
+      color: #9cb9dc;
+      font-size: 10px;
+      letter-spacing: .16em;
+    }
+
+    /* WERKWIJZE */
+    .approach { background: #0c1321; }
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 85px;
+      align-items: start;
+    }
+    .approach-items { border-top: 1px solid var(--line); }
+    .approach-item {
+      display: grid;
+      grid-template-columns: 65px 1fr;
+      gap: 15px;
+      padding: 30px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .approach-item small { color: #9ab9e1; }
+    .approach-item h3 {
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: -.045em;
+      margin: 0 0 10px;
+    }
+    .approach-item p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+      margin: 0;
+    }
+    .statement {
+      background: radial-gradient(ellipse at 65% 40%, #223c60, #101a2e 65%);
+      padding: 90px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .statement p {
+      font-size: clamp(2.1rem, 4.6vw, 4.4rem);
+      line-height: 1.18;
+      letter-spacing: -.065em;
+      margin: 0;
+    }
+    .statement span { color: #bed8f7; }
+
+    /* FORMULIEREN */
+    .contact { background: #080d18; }
+    .workforce {
+      background: #0d1524;
+      border-top: 1px solid var(--line);
+    }
+    .form-panel {
+      border: 1px solid rgba(255,255,255,.16);
+      background: linear-gradient(140deg, #17243a, #0c1423);
+      border-radius: 22px;
+      padding: 35px;
+    }
+    .form-top {
+      color: #acd2ff;
+      font-size: 11px;
+      letter-spacing: .16em;
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--line);
+    }
+    .form-panel h3 {
+      font-size: 28px;
+      font-weight: 500;
+      letter-spacing: -.05em;
+      margin: 25px 0;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .field { margin-bottom: 17px; }
+    .field label {
+      display: block;
+      font-size: 12px;
+      color: #e0e8f6;
+      margin-bottom: 9px;
+    }
+    .field input, .field select, .field textarea {
+      width: 100%;
+      min-height: 48px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,.2);
+      background: #0a1424;
+      color: white;
+      padding: 13px 14px;
+      outline: none;
+      font-size: 13px;
+    }
+    .field input:focus, .field textarea:focus, .field select:focus {
+      border-color: #b4d9ff;
+    }
+    .field input::placeholder, .field textarea::placeholder { color: #8291a9; }
+    .field textarea { min-height: 115px; resize: vertical; }
+    .form-panel .btn { width: 100%; }
+    .fine-print {
+      color: #a0aec3;
+      font-size: 11px;
+      line-height: 1.7;
+    }
+    .form-message { color: #d0e5ff; font-size: 13px; line-height: 1.7; }
+    .direct-contact { margin-top: 40px; }
+    .direct-contact small {
+      color: #9bb9dc;
+      display: block;
+      letter-spacing: .12em;
+      margin-bottom: 12px;
+    }
+    .direct-contact a {
+      font-size: 25px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 7px;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #050711;
+      border-top: 1px solid var(--line);
+      padding: 60px 0;
+    }
+    .footer-flex {
+      display: flex;
+      justify-content: space-between;
+      gap: 40px;
+    }
+    .footer-flex p {
+      color: var(--muted);
+      max-width: 380px;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 850px) {
+      .links .hide-mobile { display: none; }
+      .hero { min-height: 750px; height: auto; }
+      .hero-content { padding-top: 160px; }
+      .section-heading, .two-col { display: block; }
+      .section-heading .section-copy { margin-top: 26px; }
+      .cards { grid-template-columns: 1fr; }
+      .card { min-height: 250px; }
+      .card h3 { margin-top: 30px; }
+      .approach-items, .form-panel { margin-top: 35px; }
+      section.content-section { padding: 85px 0; }
+    }
+    @media (max-width: 520px) {
+      .logo { font-size: 19px; }
+      .nav-cta { font-size: 11px; padding: 11px 13px; }
+      .eyebrow { font-size: 9px; }
+      h1 { font-size: clamp(3.1rem, 11vw, 4.3rem); }
+      .hero-lead { font-size: 15px; }
+      .actions { flex-direction: column; }
+      .actions .btn { width: 100%; }
+      .form-row { grid-template-columns: 1fr; gap: 0; }
+      .form-panel { padding: 24px 19px; }
+      .footer-flex { flex-direction: column; }
+      .industries { font-size: 9px; line-height: 2; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .btn, .card { transition: none; }
+    }
   </style>
 </head>
 <body>
 
-<header>
-  <strong>MANUSJEVANALLES.</strong>
-  <a href="#contact">Contact</a>
-</header>
+  <header class="header">
+    <nav class="nav wrap" aria-label="Hoofdnavigatie">
+      <a href="#home" class="logo">manusje<span>vanalles</span><i>.</i></a>
+      <div class="links">
+        <a href="#diensten" class="hide-mobile">Diensten</a>
+        <a href="#werkwijze" class="hide-mobile">Werkwijze</a>
+        <a href="#aanmelden" class="hide-mobile">Werken met ons</a>
+        <a href="#contact" class="nav-cta">Project bespreken ↗</a>
+      </div>
+    </nav>
+  </header>
 
-<main>
-  <div class="hero">
-    <h1>Sterke mensen.<br>Strakke uitvoering.</h1>
-    <p>Hotelontruimingen, demontage en complete inhuizingen.
-       Flexibele teams met eigen ploegleiding.</p>
-    <div>
-      <a class="button" href="#contact">Project aanmelden</a>
-      <a href="#diensten">Onze diensten</a>
+  <main>
+    <section class="hero" id="home">
+      <canvas id="ambient" aria-hidden="true"></canvas>
+      <div class="hero-overlay"></div>
+
+      <div class="hero-content wrap">
+        <div class="eyebrow"><span class="dot"></span> UW UITVOERENDE PROJECTPARTNER</div>
+
+        <h1>Sterke mensen.<br><span>Strakke uitvoering.</span></h1>
+
+        <p class="hero-lead">
+          Van complete hotelontruimingen en demontage tot inhuizing en projectlogistiek.
+          Wij leveren de mensen én de aansturing om het werk gedaan te krijgen.
+        </p>
+
+        <div class="actions">
+          <a href="#contact" class="btn btn-light">Bespreek uw project <span>↗</span></a>
+          <a href="#aanmelden" class="btn btn-dark">Aanmelden als medewerker <span>↗</span></a>
+        </div>
+
+        <div class="industries">HOTELRENOVATIE &nbsp;•&nbsp; PROJECTINRICHTING &nbsp;•&nbsp; VASTGOED</div>
+      </div>
+
+      <a href="#diensten" class="scroll">ONTDEK ONZE AANPAK ↓</a>
+    </section>
+
+    <section class="content-section services" id="diensten">
+      <div class="wrap">
+        <div class="section-heading">
+          <div>
+            <div class="kicker">01 / WAT WIJ DOEN</div>
+            <h2>De uitvoering<br><span>goed geregeld.</span></h2>
+          </div>
+          <p class="section-copy">
+            Praktische uitvoerende capaciteit voor bedrijven die willen doorpakken.
+            Van een enkele verdieping tot grootschalige projectmatige werkzaamheden.
+          </p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <div class="card-number">01 / ↗</div>
+            <h3>Hotel- en projectontruiming</h3>
+            <p>Het leegmaken van hotelkamers, verdiepingen en complete locaties als voorbereiding op renovatie of herinrichting.</p>
+            <div class="card-tag">ONTRUIMING</div>
+          </article>
+          <article class="card">
+            <div class="card-number">02 / ↗</div>
+            <h3>Demontage &amp; ontmanteling</h3>
+            <p>Het demonteren en verwijderen van interieuronderdelen, inventaris en sanitair volgens projectafspraken.</p>
+            <div class="card-tag">DEMONTAGE</div>
+          </article>
+          <article class="card">
+            <div class="card-number">03 / ↗</div>
+            <h3>Inhuizing &amp; projectlogistiek</h3>
+            <p>Het verplaatsen, binnenbrengen en positioneren van meubilair en inrichting op locatie, volgens planning.</p>
+            <div class="card-tag">INHUIZING</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section approach" id="werkwijze">
+      <div class="wrap two-col">
+        <div>
+          <div class="kicker">02 / ZO WERKEN WIJ</div>
+          <h2>Eén partner.<br><span>Een helder plan.</span></h2>
+          <p class="section-copy">
+            U zoekt geen extra coördinatiewerk. U zoekt een partij die uitvoert.
+            Wij bespreken de opdracht, stemmen de benodigde inzet af en verzorgen
+            de dagelijkse aansturing op locatie.
+          </p>
+          <a href="#contact" class="btn btn-dark">Plan een kennismaking ↗</a>
+        </div>
+        <div class="approach-items">
+          <div class="approach-item">
+            <small>01 /</small>
+            <div>
+              <h3>Flexibel inzetbaar</h3>
+              <p>Een beschikbare poule van circa 20 uitvoerende krachten, afgestemd op het project.</p>
+            </div>
+          </div>
+          <div class="approach-item">
+            <small>02 /</small>
+            <div>
+              <h3>Eigen ploegleiding</h3>
+              <p>Een duidelijk aanspreekpunt voor de dagelijkse uitvoering en communicatie.</p>
+            </div>
+          </div>
+          <div class="approach-item">
+            <small>03 /</small>
+            <div>
+              <h3>Gericht op vaste samenwerking</h3>
+              <p>Wij bouwen graag langdurige relaties met bedrijven in renovatie, hospitality en projectinrichting.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="statement">
+      <div class="wrap">
+        <p>Uw planning loopt door.<br><span>Wij regelen de uitvoering.</span></p>
+      </div>
+    </section>
+
+    <section class="content-section contact" id="contact">
+      <div class="wrap two-col">
+        <div>
+          <div class="kicker">03 / SAMENWERKEN</div>
+          <h2>Een project op<br><span>de planning?</span></h2>
+          <p class="section-copy">
+            Vertel ons waar u ondersteuning bij zoekt. We bespreken graag
+            hoe Manusjevanalles de uitvoering kan verzorgen of uw team kan aanvullen.
+          </p>
+          <div class="direct-contact">
+            <small>DIRECT CONTACT</small>
+            <a href="tel:+31682592215">06 8259 2215 ↗</a>
+            <p class="fine-print">Landelijk inzetbaar in Nederland</p>
+          </div>
+        </div>
+
+        <div class="form-panel">
+          <div class="form-top">PROJECTAANVRAAG / 01</div>
+          <h3>Bespreek uw project</h3>
+          <form id="projectForm">
+            <div class="form-row">
+              <div class="field"><label for="bedrijf">Bedrijfsnaam *</label><input id="bedrijf" name="bedrijf" required placeholder="Uw organisatie"></div>
+              <div class="field"><label for="contactpersoon">Contactpersoon *</label><input id="contactpersoon" name="contactpersoon" required placeholder="Uw naam"></div>
+            </div>
+            <div class="form-row">
+              <div class="field"><label for="projectemail">E-mailadres *</label><input type="email" id="projectemail" name="email" required placeholder="naam@bedrijf.nl"></div>
+              <div class="field"><label for="projecttelefoon">Telefoonnummer</label><input type="tel" id="projecttelefoon" name="telefoon" placeholder="06 ..."></div>
+            </div>
+            <div class="field">
+              <label for="projecttype">Soort werkzaamheden *</label>
+              <select id="projecttype" name="werkzaamheden" required>
+                <option value="">Selecteer een dienst</option>
+                <option>Hotel- en projectontruiming</option>
+                <option>Demontage</option>
+                <option>Inhuizing en projectlogistiek</option>
+                <option>Meerdere werkzaamheden</option>
+              </select>
+            </div>
+            <div class="field"><label for="projectlocatie">Projectlocatie</label><input id="projectlocatie" name="locatie" placeholder="Plaats of regio"></div>
+            <div class="field"><label for="omschrijving">Projectomschrijving *</label><textarea id="omschrijving" name="omschrijving" required placeholder="Beschrijf uw project, planning en benodigde capaciteit"></textarea></div>
+            <button class="btn btn-light" type="submit">Kopieer mijn aanvraag <span>↗</span></button>
+            <p class="form-message" id="projectStatus" role="status"></p>
+            <p class="fine-print">De aanvraag wordt nog niet automatisch verzonden. U kunt de gegevens kopiëren en telefonisch contact opnemen.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section workforce" id="aanmelden">
+      <div class="wrap two-col">
+        <div>
+          <div class="kicker">04 / WERKEN MET ONS</div>
+          <h2>Samen aan<br><span>de slag.</span></h2>
+          <p class="section-copy">
+            Ben je beschikbaar voor uitvoerende projectwerkzaamheden?
+            Meld je aan voor mogelijke inzet bij ontruimingen, demontage
+            en inhuizingen.
+          </p>
+        </div>
+        <div class="form-panel">
+          <div class="form-top">AANMELDING / MEDEWERKERS</div>
+          <h3>Meld je aan</h3>
+          <form id="workerForm">
+            <div class="form-row">
+              <div class="field"><label for="werknaam">Naam *</label><input id="werknaam" name="naam" required placeholder="Voor- en achternaam"></div>
+              <div class="field"><label for="werktelefoon">Telefoonnummer *</label><input id="werktelefoon" name="telefoon" type="tel" required placeholder="06 ..."></div>
+            </div>
+            <div class="form-row">
+              <div class="field"><label for="werkemail">E-mailadres *</label><input id="werkemail" name="email" type="email" required placeholder="E-mailadres"></div>
+              <div class="field"><label for="werkregio">Regio *</label><input id="werkregio" name="regio" required placeholder="Bijv. Utrecht"></div>
+            </div>
+            <div class="field">
+              <label for="werkervaring">Werkervaring</label>
+              <select id="werkervaring" name="ervaring">
+                <option>Ontruiming</option>
+                <option>Demontage</option>
+                <option>Inhuizing</option>
+                <option>Meerdere disciplines</option>
+              </select>
+            </div>
+            <div class="field"><label for="werktoelichting">Aanvullende informatie</label><textarea id="werktoelichting" name="toelichting" placeholder="Vertel iets over je ervaring en beschikbaarheid"></textarea></div>
+            <button class="btn btn-light" type="submit">Kopieer mijn aanmelding <span>↗</span></button>
+            <p class="form-message" id="workerStatus" role="status"></p>
+            <p class="fine-print">Aanmelden betekent niet automatisch dat er een opdracht beschikbaar is. Het formulier verzendt nog niet automatisch.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-flex">
+      <div>
+        <a href="#home" class="logo">manusje<span>vanalles</span><i>.</i></a>
+        <p>Uitvoerende capaciteit voor hotelrenovatie, projectinrichting en vastgoedprojecten.</p>
+      </div>
+      <div>
+        <p>Contact</p>
+        <a href="tel:+31682592215">06 8259 2215</a>
+        <p>© <span id="year"></span> Manusjevanalles</p>
+      </div>
     </div>
-  </div>
+  </footer>
 
-  <section id="diensten" class="services">
-    <h2>Wat wij doen</h2>
-    <p>Wij ondersteunen zakelijke opdrachtgevers bij
-       hotelontruimingen, demontagewerkzaamheden en
-       complete inhuizingen.</p>
-    <p>Met een flexibel inzetbare ploeg van circa
-       20 mensen en een eigen ploegleider kunnen
-       wij projecten zelfstandig uitvoeren.</p>
-  </section>
+  <script>
+    // ==================================================
+    // BEWEGENDE BLAUW-PAARSE ACHTERGROND
+    // Alles draait lokaal, zonder externe animatiebestanden.
+    // ==================================================
+    (function () {
+      const canvas = document.getElementById('ambient');
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
 
-  <section id="contact">
-    <h2>Samen aan de slag?</h2>
-    <p>Heeft u een project of zoekt u een vaste
-       uitvoerende partner? Neem contact met ons op.</p>
-    <p>Telefonische contactgegevens volgen.</p>
-  </section>
-</main>
+      let width = 0, height = 0, dpr = 1;
+      let frame = 0;
+      let raf = 0;
+      let start = performance.now();
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-<footer>© 2026 Manusjevanalles</footer>
+      function resize() {
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        width = canvas.clientWidth;
+        height = canvas.clientHeight;
+        canvas.width = Math.round(width * dpr);
+        canvas.height = Math.round(height * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
 
+      function glow(x, y, radius, color) {
+        const g = ctx.createRadialGradient(x, y, 0, x, y, radius);
+        g.addColorStop(0, color);
+        g.addColorStop(1, 'rgba(0,0,0,0)');
+        ctx.fillStyle = g;
+        ctx.fillRect(x-radius, y-radius, radius*2, radius*2);
+      }
+
+      function draw(now) {
+        const time = reducedMotion ? 0 : (now - start) / 1000;
+        ctx.clearRect(0, 0, width, height);
+        ctx.fillStyle = '#050711';
+        ctx.fillRect(0, 0, width, height);
+
+        // Bewegende lichtvelden
+        const x1 = width * (.22 + Math.sin(time * .30) * .13);
+        const y1 = height * (.40 + Math.cos(time * .22) * .14);
+        const x2 = width * (.77 + Math.cos(time * .24) * .12);
+        const y2 = height * (.55 + Math.sin(time * .27) * .13);
+        const radius = Math.max(width, height) * .68;
+
+        glow(x1, y1, radius, 'rgba(17,96,220,.38)');
+        glow(x2, y2, radius, 'rgba(105,36,200,.29)');
+        glow(
+          width * (.51 + Math.sin(time * .20) * .12),
+          height * .76,
+          radius * .66,
+          'rgba(15,81,162,.16)'
+        );
+
+        // Zacht golvende lijnen
+        for (let i = 0; i < 19; i++) {
+          const baseY = height * (.19 + i * .038);
+          const offset = Math.sin(time * .36 + i * .28) * 19;
+
+          ctx.beginPath();
+          ctx.lineWidth = .8;
+          ctx.strokeStyle = 'rgba(135,174,248,' + (0.055 + i * .002) + ')';
+
+          for (let x = -10; x <= width + 10; x += 9) {
+            const y = baseY
+              + Math.sin(x * .006 + time * .45 + i * .24) * 29
+              + Math.sin(x * .0028 - time * .26 + i * .14) * 22
+              + offset;
+            if (x === -10) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+          }
+          ctx.stroke();
+        }
+
+        // Subtiele diagonale golf
+        ctx.beginPath();
+        ctx.lineWidth = 1.2;
+        ctx.strokeStyle = 'rgba(180,209,255,.13)';
+        for (let x = 0; x <= width; x += 8) {
+          const y = height * .54
+            + Math.sin(x * .005 + time * .7) * 63
+            + Math.sin(x * .011 - time * .4) * 14;
+          if (x === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+
+        frame++;
+        if (!reducedMotion) raf = requestAnimationFrame(draw);
+      }
+
+      resize();
+      draw(performance.now());
+
+      window.addEventListener('resize', resize);
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) cancelAnimationFrame(raf);
+        else if (!reducedMotion) {
+          cancelAnimationFrame(raf);
+          raf = requestAnimationFrame(draw);
+        }
+      });
+    })();
+
+    // ==================================================
+    // FORMULIEREN - KOPIEERFUNCTIE
+    // Geen verborgen verzending naar een onbevestigd adres.
+    // ==================================================
+    async function copyForm(formId, statusId, title) {
+      const form = document.getElementById(formId);
+      const status = document.getElementById(statusId);
+      const data = new FormData(form);
+
+      const message = title + '\n\n' +
+        [...data.entries()]
+          .map(([name, value]) => name + ': ' + value)
+          .join('\n');
+
+      try {
+        await navigator.clipboard.writeText(message);
+        status.textContent = 'Gegevens gekopieerd. Neem telefonisch contact op om de aanvraag te bespreken.';
+      } catch (error) {
+        status.textContent = 'Kopiëren is niet gelukt. Neem telefonisch contact op via 06 8259 2215.';
+      }
+    }
+
+    document.getElementById('projectForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      copyForm('projectForm', 'projectStatus', 'Projectaanvraag Manusjevanalles');
+    });
+
+    document.getElementById('workerForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      copyForm('workerForm', 'workerStatus', 'Aanmelding medewerker Manusjevanalles');
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
